@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+</head>
+<body>
+
+  <h2>Oblicz ratę miesięczną kursu</h2>
+
+  <br><br>
+
+  <input type="text" id="imie" placeholder="Podaj imię">
+
+  <br><br>
+
+  <label>
+    React
+    <input type="checkbox" id="react">
+  </label>
+
+  <br>
+
+  <label>
+    JavaScript
+    <input type="checkbox" id="javascript">
+  </label>
+
+  <br><br>
+
+  <label>
+    Liczba rat:
+    <input type="number" id="installments" min="1" value="1">
+  </label>
+
+  <br><br>
+
+  <select id="miasto">
+    <option value="Warszawie">Warszawa</option>
+    <option value="Katowicach">Katowice</option>
+    <option value="Gdańsku">Gdańsk</option>
+  </select>
+
+  <br><br>
+
+  <label>Płeć:</label><br>
+
+  <label>
+    <input type="radio" name="plec" value="Mężczyzna">
+    Mężczyzna
+  </label>
+
+  <label>
+    <input type="radio" name="plec" value="Kobieta">
+    Kobieta
+  </label>
+
+  <br><br>
+
+  <button onclick="calculate()">Oblicz</button>
+
+  <p id="result"></p>
+
+  <script>
+    function calculate() {
+
+      let imie = document.getElementById("imie").value;
+      let liczbaRat = document.getElementById("installments").value;
+      let kursReact = document.getElementById("react");
+      let kursJS = document.getElementById("javascript");
+      let miasto = document.getElementById("miasto").value;
+      let plec = document.querySelector('input[name="plec"]:checked').value;
+
+      let kwota = 0;
+
+      if (kursReact.checked) {
+        kwota += 5000;
+      }
+
+      if (kursJS.checked) {
+        kwota += 3000;
+      }
+
+      liczbaRat = Number(liczbaRat);
+
+      let rata = kwota / liczbaRat;
+
+      document.getElementById("result").innerText =
+        `${imie} z mieszkający w  ${miasto} (${plec}) musi zapłacić kwotę która wynosi ${kwota} zł, a rata miesięczna wynosi ${rata.toFixed(2)} zł.`;
+    }
+  </script>
+
+</body>
+</html>
